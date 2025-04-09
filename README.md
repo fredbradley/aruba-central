@@ -1,5 +1,5 @@
 # PHP SDK for Aruba Central API
-## with Laravel Discovery Support
+## For Laravel Applications
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/fredbradley/aruba-central.svg?style=flat-square)](https://packagist.org/packages/fredbradley/aruba-central)
 [![Total Downloads](https://img.shields.io/packagist/dt/fredbradley/aruba-central.svg?style=flat-square)](https://packagist.org/packages/fredbradley/aruba-central)
@@ -16,7 +16,6 @@ composer require fredbradley/aruba-central
 ```
 
 ## Usage
-### If within a Laravel Application with Laravel Discovery turned on
 You will need to add the following to your `.env` file:
 ```dotenv
 ARUBA_CLIENT_ID=""
@@ -32,8 +31,6 @@ The config file is publishable, but you shouldn't need to change anything.
 The package will automatically register the `ArubaCentralConnector` class as a singleton. You can then use the `ArubaCentralConnector` class as a dependency in your classes.
 
 ### Usage
-The way you use this package is the same within Laravel or as a standalone package:
-
 ```php
 use FredBradley\ArubaCentral\ArubaCentral;
 
