@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral\Requests;
 
 use Carbon\Carbon;
@@ -15,8 +17,9 @@ class ListAccessPointsRequest extends Request
 
     protected Method $method = Method::GET;
 
-    public string $resultKey = 'aps';
-
+    /**
+     * @param  array<string>  $customQuery
+     */
     public function __construct(protected array $customQuery = [])
     {
     }
@@ -26,6 +29,9 @@ class ListAccessPointsRequest extends Request
         return 'monitoring/v2/aps';
     }
 
+    /**
+     * @return array<array-key, string|int>
+     */
     protected function defaultQuery(): array
     {
         return array_merge($this->customQuery, [
@@ -39,7 +45,7 @@ class ListAccessPointsRequest extends Request
         $data = $response->json()['aps'];
 
         return collect($data)->map(
-            fn ($ap) => new AccessPoint(
+            static fn ($ap) => new AccessPoint(
                 serial: $ap['serial'],
                 notes: $ap['notes'],
                 name: $ap['name'],

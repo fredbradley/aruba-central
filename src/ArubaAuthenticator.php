@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral;
 
 use Illuminate\Http\Client\ConnectionException;

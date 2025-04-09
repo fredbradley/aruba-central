@@ -2,7 +2,14 @@
     "name": "fredbradley/aruba-central",
     "description": "A PHP wrapper for the Aruba Central API",
     "keywords": [
-
+        "aruba",
+        "central",
+        "api",
+        "wrapper",
+        "php",
+        "hpe",
+        "networking",
+        "aruba-php-sdk"
     ],
     "license": "MIT",
     "type": "package",
@@ -14,15 +21,16 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "league/flysystem": "^3.15",
         "saloonphp/cache-plugin": "^3.0",
-        "saloonphp/saloon": "^3.0",
-        "saloonphp/pagination-plugin": "^2.0"
+        "saloonphp/pagination-plugin": "^2.0",
+        "saloonphp/saloon": "^3.0"
     },
     "require-dev": {
         "laravel/pint": "^1.10",
         "mockery/mockery": "^1.6",
+        "nunomaduro/phpinsights": "^2.12",
         "pestphp/pest": "^1.23",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.0"
@@ -46,6 +54,7 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "pestphp/pest-plugin": true
         }
     },

@@ -1,30 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral;
 
 use FredBradley\ArubaCentral\Requests\ListAccessPointsRequest;
 use FredBradley\ArubaCentral\Requests\ListConnectedWirelessClients;
 use Illuminate\Support\Collection;
 
-class SearchByUsername
+final class SearchByUsername
 {
-    public string $username;
+    protected Collection $connectedAps;
 
-    public Collection $connectedAps;
-
-    public function __construct(private readonly ArubaCentralConnector $connector)
+    public function __construct(protected string $username, private readonly ArubaCentralConnector $connector)
     {
     }
 
-    public function setUsername(string $username): void
+    public function search(): Collection
     {
-        $this->username = $username;
-    }
-
-    public function search(string $username): Collection
-    {
-        $this->setUsername($username);
-
         $request = new ListConnectedWirelessClients();
 
         $results = collect();

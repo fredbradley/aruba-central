@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral;
 
 use FredBradley\ArubaCentral\Middleware\LogIncomingResponse;
@@ -36,6 +38,9 @@ class ArubaCentralConnector extends Connector implements HasPagination
                 return $this->getOffset() >= (int) $response->json('total');
             }
 
+            /**
+             * @return array<array-key, string|int>
+             */
             protected function getPageItems(Response $response, Request $request): array
             {
                 return $response->dto() ?? [];
@@ -48,7 +53,9 @@ class ArubaCentralConnector extends Connector implements HasPagination
         return $this->baseUrl;
     }
 
-
+    /**
+     * @return array<array-key, string>
+     */
     protected function defaultHeaders(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral;
 
 use Illuminate\Contracts\Foundation\Application;
@@ -11,7 +13,7 @@ class ArubaCentralServiceProvider extends ServiceProvider
     {
 
         // For Facade
-        $this->app->singleton('aruba', function (Application $app) {
+        $this->app->singleton('aruba', static function (Application $app) {
             return new ArubaCentralConnector(
                 config('aruba.client_id'),
                 config('aruba.client_secret'),
@@ -20,7 +22,7 @@ class ArubaCentralServiceProvider extends ServiceProvider
         });
 
         // For Dependency Injection
-        $this->app->singleton(ArubaCentralConnector::class, function (Application $app) {
+        $this->app->singleton(ArubaCentralConnector::class, static function (Application $app) {
             return new ArubaCentralConnector(
                 config('aruba.client_id'),
                 config('aruba.client_secret'),

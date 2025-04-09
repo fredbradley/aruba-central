@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral\Resources;
 
 use FredBradley\ArubaCentral\ArubaCentralConnector;
 use FredBradley\ArubaCentral\DataTransferObjects\AccessPoint;
 use FredBradley\ArubaCentral\Requests\ListAccessPointsRequest;
-use ReflectionException;
 use Throwable;
 
-class AccessPointResource
+final class AccessPointResource
 {
     private ArubaCentralConnector $connector;
 
@@ -22,16 +23,13 @@ class AccessPointResource
     }
 
     /**
-     * @throws ReflectionException
+     * @return array<AccessPoint>
+     *
      * @throws Throwable
      */
     public function all(): array
     {
-
-        /** @var AccessPoint[] $aps */
-        $aps = $this->connector->send(new ListAccessPointsRequest())->dto();
-
-        return $aps;
+        return $this->connector->send(new ListAccessPointsRequest())->dto();
     }
 
     public function findByMacAddress(string $macAddress): ?AccessPoint
@@ -39,10 +37,9 @@ class AccessPointResource
         $response = $this->connector->send(new ListAccessPointsRequest(['macaddr' => $macAddress]));
 
         $data = $response->dto();
+
         return $data ? $data[0] : null;
     }
-
-
 
     // Add methods like `find($mac)`, `byLabel($label)` etc.
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral\Resources;
 
 use FredBradley\ArubaCentral\ArubaCentralConnector;
@@ -8,7 +10,7 @@ use Illuminate\Support\Collection;
 use ReflectionException;
 use Throwable;
 
-class ConnectedWirelessClientResource
+final class ConnectedWirelessClientResource
 {
     private ArubaCentralConnector $connector;
 
@@ -44,7 +46,7 @@ class ConnectedWirelessClientResource
      */
     public function findUser(string $username): Collection
     {
-        return $this->all()->filter(function ($client) use ($username) {
+        return $this->all()->filter(static function ($client) use ($username) {
             return str_contains(strtolower($client->connectedUser), strtolower($username));
         });
     }

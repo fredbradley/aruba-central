@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FredBradley\ArubaCentral\Requests;
 
 use Carbon\Carbon;
 use FredBradley\ArubaCentral\DataTransferObjects\WirelesssClient;
+use JsonException;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
@@ -13,29 +16,36 @@ class ListConnectedWirelessClients extends Request implements Paginatable
 {
     protected Method $method = Method::GET;
 
-    public string $resultKey = 'clients';
-
     public function resolveEndpoint(): string
     {
         return '/monitoring/v2/clients';
     }
 
+    /**
+     * @return array<string, string|int>
+     */
     protected function defaultQuery(): array
     {
         return [
             'limit' => 50,
-            'timerange' => '3M',
-            'client_type' => 'WIRELESS',
-            'client_status' => 'CONNECTED',
+            'timerange' => '3M', // 3 Months
+            'client_type' => 'WIRELESS', // WIRELESS, WIRED
+            'client_status' => 'CONNECTED', // CONNECTED, FAILED_TO_CONNECT
             'show_signal_db' => 'true',
         ];
     }
+
+    /**
+     * @return array<WirelesssClient>
+     *
+     * @throws JsonException
+     */
     public function createDtoFromResponse(Response $response): array
     {
         $data = $response->json()['clients'];
 
         return collect($data)->map(
-            fn ($ap) => new WirelesssClient(
+            static fn ($ap) => new WirelesssClient(
                 apMac: $ap['associated_device_mac'],
                 apName: $ap['associated_device_name'],
                 hostname: $ap['hostname'],
@@ -50,5 +60,4 @@ class ListConnectedWirelessClients extends Request implements Paginatable
             )
         )->toArray();
     }
-
 }
