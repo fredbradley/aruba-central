@@ -56,7 +56,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email code@fredbradley.co.uk instead of using the issue tracker.
+If you discover any security related issues, please either [report here](https://github.com/fredbradley/aruba-central/security) or if you don't have a Github account, email code@fredbradley.co.uk instead of using the issue tracker.
 
 ## Credits
 
