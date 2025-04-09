@@ -22,8 +22,6 @@ When requesting or submitting new features, first consider whether it might be u
 source projects are used by many developers, who may have entirely different needs to your own. Think about
 whether or not your feature is likely to be used by other users of the project.
 
-Please also consider whether the issue / change is viable with in the constraints of what the over-riding STEER API allows us to do. During development stages this may be a good place to feed back further comments to STEER for enhancements on their end.
-
 ## Procedure
 
 Before filing an issue:

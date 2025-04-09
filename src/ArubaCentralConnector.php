@@ -24,13 +24,14 @@ class ArubaCentralConnector extends Connector implements HasPagination
         private readonly string $clientSecret,
         private readonly string $baseUrl,
     ) {
-        $this->middleware()->onRequest(new LogOutgoingRequest());
-        $this->middleware()->onResponse(new LogIncomingResponse());
+        $this->middleware()->onRequest(new LogOutgoingRequest);
+        $this->middleware()->onResponse(new LogIncomingResponse);
     }
 
     public function paginate(Request $request): Paginator
     {
-        return new class ($this, $request) extends OffsetPaginator {
+        return new class($this, $request) extends OffsetPaginator
+        {
             protected ?int $perPageLimit = 1000;
 
             protected function isLastPage(Response $response): bool
@@ -66,6 +67,6 @@ class ArubaCentralConnector extends Connector implements HasPagination
 
     protected function defaultAuth(): ?Authenticator
     {
-        return new ArubaAuthenticator();
+        return new ArubaAuthenticator;
     }
 }

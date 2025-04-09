@@ -29,7 +29,7 @@ final class AccessPointResource
      */
     public function all(): array
     {
-        return $this->connector->send(new ListAccessPointsRequest())->dto();
+        return $this->connector->send(new ListAccessPointsRequest)->dto();
     }
 
     public function findByMacAddress(string $macAddress): ?AccessPoint

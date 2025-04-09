@@ -29,7 +29,7 @@ final class ConnectedWirelessClientResource
     public function all(): Collection
     {
         $pages = $this->connector->paginate(
-            new ListConnectedWirelessClients()
+            new ListConnectedWirelessClients
         );
 
         $results = collect();

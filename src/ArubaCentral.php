@@ -13,10 +13,9 @@ class ArubaCentral
     {
         return app(ArubaCentralService::class)->accessPoints();
     }
+
     public static function wirelessClients(): ConnectedWirelessClientResource
     {
         return app(ArubaCentralService::class)->wirelessClients();
     }
-
-
 }

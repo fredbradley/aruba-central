@@ -14,5 +14,4 @@ class LogOutgoingRequest implements RequestMiddleware
     {
         Log::info('[Saloon] Sending request to '.$pendingRequest->getUrl());
     }
-
 }

@@ -11,11 +11,11 @@ class ArubaCentralService
 {
     public function accessPoints(): AccessPointResource
     {
-        return new AccessPointResource();
+        return new AccessPointResource;
     }
 
     public function wirelessClients(): ConnectedWirelessClientResource
     {
-        return new ConnectedWirelessClientResource();
+        return new ConnectedWirelessClientResource;
     }
 }

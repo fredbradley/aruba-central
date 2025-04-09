@@ -21,6 +21,5 @@ readonly class AccessPoint
         public string $firmware_version,
         public array $labels,
         public Carbon $last_modified,
-    ) {
-    }
+    ) {}
 }

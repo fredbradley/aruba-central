@@ -20,9 +20,7 @@ class ListAccessPointsRequest extends Request
     /**
      * @param  array<string>  $customQuery
      */
-    public function __construct(protected array $customQuery = [])
-    {
-    }
+    public function __construct(protected array $customQuery = []) {}
 
     public function resolveEndpoint(): string
     {

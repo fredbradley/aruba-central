@@ -34,9 +34,8 @@ class ArubaCentralServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/config.php' => config_path('aruba.php'),
+            __DIR__.'/../config/config.php' => config_path('aruba.php'),
         ], 'config');
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'aruba');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'aruba');
     }
-
 }

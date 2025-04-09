@@ -12,13 +12,11 @@ final class SearchByUsername
 {
     protected Collection $connectedAps;
 
-    public function __construct(protected string $username, private readonly ArubaCentralConnector $connector)
-    {
-    }
+    public function __construct(protected string $username, private readonly ArubaCentralConnector $connector) {}
 
     public function search(): Collection
     {
-        $request = new ListConnectedWirelessClients();
+        $request = new ListConnectedWirelessClients;
 
         $results = collect();
         foreach ($this->connector->paginate($request)->items() as $client) {
