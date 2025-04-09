@@ -27,8 +27,6 @@ ARUBA_REFRESH_TOKEN=""
 
 ```
 The config file is publishable, but you shouldn't need to change anything.
-#### Dependency Injection
-The package will automatically register the `ArubaCentralConnector` class as a singleton. You can then use the `ArubaCentralConnector` class as a dependency in your classes.
 
 ### Usage
 ```php
