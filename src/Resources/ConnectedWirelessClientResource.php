@@ -4,25 +4,13 @@ declare(strict_types=1);
 
 namespace FredBradley\ArubaCentral\Resources;
 
-use FredBradley\ArubaCentral\ArubaCentralConnector;
 use FredBradley\ArubaCentral\Requests\ListConnectedWirelessClients;
 use Illuminate\Support\Collection;
 use ReflectionException;
 use Throwable;
 
-final class ConnectedWirelessClientResource
+final class ConnectedWirelessClientResource extends BaseResource
 {
-    private ArubaCentralConnector $connector;
-
-    public function __construct()
-    {
-        $this->connector = new ArubaCentralConnector(
-            config('aruba.client_id'),
-            config('aruba.client_secret'),
-            config('aruba.base_url')
-        );
-    }
-
     /**
      * @throws Throwable
      */

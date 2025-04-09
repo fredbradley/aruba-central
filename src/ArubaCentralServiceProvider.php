@@ -13,16 +13,12 @@ class ArubaCentralServiceProvider extends ServiceProvider
     {
 
         // For Facade
-        $this->app->singleton('aruba', static function (Application $app) {
-            return new ArubaCentralConnector(
-                config('aruba.client_id'),
-                config('aruba.client_secret'),
-                config('aruba.base_url')
-            );
+        $this->app->singleton('Aruba', static function (Application $app) {
+            return new ArubaCentral;
         });
 
         // For Dependency Injection
-        $this->app->singleton(ArubaCentralConnector::class, static function (Application $app) {
+        $this->app->bind(ArubaCentralConnector::class, static function (Application $app) {
             return new ArubaCentralConnector(
                 config('aruba.client_id'),
                 config('aruba.client_secret'),

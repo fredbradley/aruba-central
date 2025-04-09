@@ -38,7 +38,7 @@ class ListAccessPointsRequest extends Request
         ]);
     }
 
-    public function createDtoFromResponse(Response $response): mixed
+    public function createDtoFromResponse(Response $response): array
     {
         $data = $response->json()['aps'];
 

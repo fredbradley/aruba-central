@@ -4,32 +4,21 @@ declare(strict_types=1);
 
 namespace FredBradley\ArubaCentral\Resources;
 
-use FredBradley\ArubaCentral\ArubaCentralConnector;
 use FredBradley\ArubaCentral\DataTransferObjects\AccessPoint;
 use FredBradley\ArubaCentral\Requests\ListAccessPointsRequest;
-use Throwable;
+use Illuminate\Support\Collection;
+use Saloon\Exceptions\Request\FatalRequestException;
+use Saloon\Exceptions\Request\RequestException;
 
-final class AccessPointResource
+final class AccessPointResource extends BaseResource
 {
-    private ArubaCentralConnector $connector;
-
-    public function __construct()
-    {
-        $this->connector = new ArubaCentralConnector(
-            config('aruba.client_id'),
-            config('aruba.client_secret'),
-            config('aruba.base_url')
-        );
-    }
-
     /**
-     * @return array<AccessPoint>
-     *
-     * @throws Throwable
+     * @throws FatalRequestException
+     * @throws RequestException
      */
-    public function all(): array
+    public function all(): Collection
     {
-        return $this->connector->send(new ListAccessPointsRequest)->dto();
+        return collect($this->connector->send(new ListAccessPointsRequest)->dto());
     }
 
     public function findByMacAddress(string $macAddress): ?AccessPoint
