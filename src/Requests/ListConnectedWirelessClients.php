@@ -45,7 +45,7 @@ class ListConnectedWirelessClients extends Request implements Paginatable
         $data = $response->json()['clients'];
 
         return collect($data)->map(
-            static fn ($ap) => new WirelessClient(
+            fn($ap) => new WirelessClient(
                 apMac: $ap['associated_device_mac'],
                 apName: $ap['associated_device_name'],
                 hostname: $ap['hostname'],
@@ -55,9 +55,20 @@ class ListConnectedWirelessClients extends Request implements Paginatable
                 network: $ap['network'],
                 labels: $ap['labels'],
                 signalStrength: $ap['signal_strength'] ?? null,
-                last_connection_time: Carbon::parse($ap['last_connection_time'] ?? '1970-01-01'),
+                last_connection_time: Carbon::parse($this->convertToUnixTimestamp($ap['last_connection_time']) ?? '1970-01-01'),
                 connectedUser: $ap['username'],
             )
         )->toArray();
+    }
+
+    /**
+     * Convert the timestamp to a Unix timestamp.
+     *
+     * @param int $timestamp
+     * @return int
+     */
+    private function convertToUnixTimestamp(int $timestamp): int
+    {
+        return (int)substr(trim((string)$timestamp), 0, -3);
     }
 }
