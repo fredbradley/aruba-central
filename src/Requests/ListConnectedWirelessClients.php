@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace FredBradley\ArubaCentral\Requests;
 
 use Carbon\Carbon;
-use FredBradley\ArubaCentral\DataTransferObjects\WirelesssClient;
+use FredBradley\ArubaCentral\DataTransferObjects\WirelessClient;
 use JsonException;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -36,7 +36,7 @@ class ListConnectedWirelessClients extends Request implements Paginatable
     }
 
     /**
-     * @return array<WirelesssClient>
+     * @return array<WirelessClient>
      *
      * @throws JsonException
      */
@@ -45,7 +45,7 @@ class ListConnectedWirelessClients extends Request implements Paginatable
         $data = $response->json()['clients'];
 
         return collect($data)->map(
-            static fn ($ap) => new WirelesssClient(
+            static fn ($ap) => new WirelessClient(
                 apMac: $ap['associated_device_mac'],
                 apName: $ap['associated_device_name'],
                 hostname: $ap['hostname'],

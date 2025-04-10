@@ -6,7 +6,7 @@ namespace FredBradley\ArubaCentral\DataTransferObjects;
 
 use Carbon\Carbon;
 
-readonly class WirelesssClient
+readonly class WirelessClient
 {
     /**
      * @param  array<string>  $labels
