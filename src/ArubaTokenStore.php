@@ -32,4 +32,18 @@ class ArubaTokenStore
     {
         return cache()->get('aruba_refresh');
     }
+    /**
+     * Particularly useful for debugging between systems when the tokens refresh.
+     * Not used in production.
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public static function reveal(): array
+    {
+        return [
+            'access_token' => self::get(),
+            'refresh_token' => self::refresh(),
+        ];
+    }
 }
