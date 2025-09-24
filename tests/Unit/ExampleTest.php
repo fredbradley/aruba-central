@@ -18,7 +18,7 @@ it('can access config', function () {
     expect(config('my-package.enabled'))->toBeTrue();
 });
 
-it('stores aruba cache data', function() {
+it('stores aruba cache data', function () {
     ArubaTokenStore::put('access-token', 'refresh-token', 3600);
 
     expect(ArubaTokenStore::get())->toBe('access-token')
@@ -31,5 +31,3 @@ it('loads the service', function () {
     expect($service->accessPoints())->toBeInstanceOf(\FredBradley\ArubaCentral\Resources\AccessPointResource::class);
     expect($service->wirelessClients())->toBeInstanceOf(\FredBradley\ArubaCentral\Resources\ConnectedWirelessClientResource::class);
 });
-
-

@@ -1,12 +1,8 @@
 <?php
 
-use FredBradley\ArubaCentral\Middleware\LogIncomingResponse;
 use FredBradley\ArubaCentral\Middleware\LogOutgoingRequest;
 use Illuminate\Support\Facades\Log;
 use Saloon\Http\PendingRequest;
-use Saloon\Http\Response;
-
-
 
 it('logs the outgoing request URL correctly', function () {
     // Mock the Log facade to intercept log calls

@@ -17,22 +17,36 @@ class ArubaAuthenticator implements Authenticator
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function set(PendingRequest $request): void
+    public function set(PendingRequest $pendingRequest): void
     {
-        $token = ArubaTokenStore::get();
-        if (! $token) {
-            $token = $this->refreshToken();
-        }
-        (new TokenAuthenticator($token))->set($request);
+        $token = $this->getValidToken();
+
+        (new TokenAuthenticator($token))->set($pendingRequest);
     }
 
     /**
      * @throws RequestException
      * @throws ConnectionException
      */
-    protected function refreshToken(): string
+    private function getValidToken(): string
     {
-        $refreshToken = ArubaTokenStore::refresh() ?? config('aruba.refresh_token');
+        $token = ArubaTokenStore::get();
+
+        if (! $token) {
+            $this->refreshToken();
+            $token = ArubaTokenStore::get();
+        }
+
+        return $token;
+    }
+
+    /**
+     * @throws RequestException
+     * @throws ConnectionException
+     */
+    public function refreshToken(): void
+    {
+        $refreshToken = ArubaTokenStore::refresh();
 
         $response = Http::asForm()->post(config('aruba.base_url').'/oauth2/token', [
             'grant_type' => 'refresh_token',
@@ -44,7 +58,5 @@ class ArubaAuthenticator implements Authenticator
         $data = $response->json();
 
         ArubaTokenStore::put($data['access_token'], $data['refresh_token'], $data['expires_in']);
-
-        return $data['access_token'];
     }
 }

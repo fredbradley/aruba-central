@@ -1,11 +1,7 @@
 <?php
+
 use FredBradley\ArubaCentral\ArubaCentralConnector;
-use FredBradley\ArubaCentral\Middleware\LogIncomingResponse;
-use FredBradley\ArubaCentral\Middleware\LogOutgoingRequest;
-use Saloon\Http\Request;
-use Saloon\Http\Response;
 use Saloon\Contracts\Authenticator;
-use Illuminate\Support\Facades\Log;
 
 beforeEach(function () {
     // Create a new instance of the ArubaCentralConnector for testing
@@ -34,5 +30,3 @@ it('returns the correct default authenticator', function () {
     expect($authenticator)->toBeInstanceOf(Authenticator::class);
     expect($authenticator)->toBeInstanceOf(\FredBradley\ArubaCentral\ArubaAuthenticator::class);
 });
-
-

@@ -24,6 +24,7 @@ final class ConnectedWirelessClientResource extends BaseResource
         foreach ($pages->items() as $client) {
             $results->push($client);
         }
+
         return $results->unique();
     }
 

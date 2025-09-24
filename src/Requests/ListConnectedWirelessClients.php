@@ -45,7 +45,7 @@ class ListConnectedWirelessClients extends Request implements Paginatable
         $data = $response->json()['clients'];
 
         return collect($data)->map(
-            fn($ap) => new WirelessClient(
+            fn ($ap) => new WirelessClient(
                 apMac: $ap['associated_device_mac'],
                 apName: $ap['associated_device_name'],
                 hostname: $ap['hostname'],
@@ -63,12 +63,9 @@ class ListConnectedWirelessClients extends Request implements Paginatable
 
     /**
      * Convert the timestamp to a Unix timestamp.
-     *
-     * @param int $timestamp
-     * @return int
      */
     private function convertToUnixTimestamp(int $timestamp): int
     {
-        return (int)substr(trim((string)$timestamp), 0, -3);
+        return (int) substr(trim((string) $timestamp), 0, -3);
     }
 }

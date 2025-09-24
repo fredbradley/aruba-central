@@ -11,7 +11,7 @@
 |
 */
 
- uses(\FredBradley\ArubaCentral\Tests\TestCase::class)->in(__DIR__);
+uses(\FredBradley\ArubaCentral\Tests\TestCase::class)->in(__DIR__);
 
 /*
 |--------------------------------------------------------------------------
