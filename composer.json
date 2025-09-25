@@ -50,7 +50,7 @@
     "scripts": {
         "pest": "vendor/bin/pest",
         "pint": "vendor/bin/pint",
-        "phpstan": "vendor/bin/phpstan",
+        "phpstan": "vendor/bin/phpstan --memory-limit=2G",
         "coverage": "vendor/bin/pest --coverage"
     },
     "config": {

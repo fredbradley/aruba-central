@@ -19,10 +19,14 @@ class ArubaCentralServiceProvider extends ServiceProvider
 
         // For Dependency Injection
         $this->app->bind(ArubaCentralConnector::class, static function (Application $app) {
+            $clientId = (string) config('aruba.client_id');
+            $clientSecret = (string) config('aruba.client_secret');
+            $baseUrl = (string) config('aruba.base_url');
+
             return new ArubaCentralConnector(
-                config('aruba.client_id'),
-                config('aruba.client_secret'),
-                config('aruba.base_url')
+                $clientId,
+                $clientSecret,
+                $baseUrl
             );
         });
     }

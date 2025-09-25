@@ -16,6 +16,8 @@ class ListConnectedWirelessClients extends Request implements Paginatable
 {
     protected Method $method = Method::GET;
 
+    public function __construct(protected string $username) {}
+
     public function resolveEndpoint(): string
     {
         return '/monitoring/v2/clients';
@@ -28,10 +30,11 @@ class ListConnectedWirelessClients extends Request implements Paginatable
     {
         return [
             'limit' => 50,
-            'timerange' => '3M', // 3 Months
+            'timerange' => '3H', // 3 Hours
             'client_type' => 'WIRELESS', // WIRELESS, WIRED
             'client_status' => 'CONNECTED', // CONNECTED, FAILED_TO_CONNECT
             'show_signal_db' => 'true',
+            'name' => $this->username,
         ];
     }
 
@@ -42,8 +45,10 @@ class ListConnectedWirelessClients extends Request implements Paginatable
      */
     public function createDtoFromResponse(Response $response): array
     {
+        /** @var array $data */
         $data = $response->json()['clients'];
 
+        /** @var array<WirelessClient> */
         return collect($data)->map(
             fn ($ap) => new WirelessClient(
                 apMac: $ap['associated_device_mac'],
