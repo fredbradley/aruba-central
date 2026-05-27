@@ -23,9 +23,9 @@
     "require": {
         "php": "^8.3",
         "league/flysystem": "^3.15",
-        "saloonphp/cache-plugin": "^3.0",
+        "saloonphp/cache-plugin": "^4.0",
         "saloonphp/pagination-plugin": "^2.0",
-        "saloonphp/saloon": "^3.0"
+        "saloonphp/saloon": "^4.0"
     },
     "require-dev": {
         "laravel/pint": "^1.10",
